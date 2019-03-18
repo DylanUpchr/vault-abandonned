@@ -8,7 +8,7 @@ import { MatSidenav } from '@angular/material';
   styleUrls: ['./page-toolbar.component.css']
 })
 export class PageToolbarComponent implements OnInit {
-  title = "vault";
+  title = 'vault';
 
   @Input() sidenav: MatSidenav;
 
