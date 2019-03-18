@@ -10,6 +10,7 @@ import { FileViewComponent } from './components/file-view/file-view.component';
 import { LoginComponent } from './components/login/login.component';
 import { PageFooterComponent } from './components/page-footer/page-footer.component';
 import { PageToolbarComponent } from './components/page-toolbar/page-toolbar.component';
+import { RessourceNotFoundComponent } from './components/ressource-not-found/ressource-not-found.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { PageToolbarComponent } from './components/page-toolbar/page-toolbar.com
     FileViewComponent,
     LoginComponent,
     PageFooterComponent,
-    PageToolbarComponent
+    PageToolbarComponent,
+    RessourceNotFoundComponent
   ],
   imports: [
     BrowserModule,

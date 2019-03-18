@@ -1,4 +1,30 @@
-footer{
-  height: auto;
-  width: 100%;
+@import '~@angular/material/theming';
+@import '../../../custom-theme.scss';
+
+
+@mixin angular-material-theme($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+
+  mat-toolbar{
+    background-color: mat-color($primary);
+    color: white;
+    height: auto;
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+  }
+  mat-divider{
+    background-color: mat-color($accent);
+  }
+  h3{
+    font: 500 20px/32px Roboto, "Helvetica Neue", sans-serif;
+  }
+  a{
+    margin-left: 5px;
+  }
 }
+
+@include angular-material-theme($vault-theme);

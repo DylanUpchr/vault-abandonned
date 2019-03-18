@@ -1,3 +1,10 @@
-<footer >
-Footer
-</footer>
+<mat-toolbar color="primary">
+  <mat-list>
+      <h3>Links</h3>
+      <mat-list-item *ngFor="let link of links; last as last">
+        <mat-icon color="accent">{{link.icon}}</mat-icon>
+        <a routerLink="{{link.href}}">{{link.text}}</a>
+        <mat-divider color="accent" [inset]="true" *ngIf="!last"></mat-divider>
+      </mat-list-item>
+  </mat-list>
+</mat-toolbar>
