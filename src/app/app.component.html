@@ -1,6 +1,6 @@
 <!--Sidenav-->
-<mat-sidenav-container>
-  <mat-sidenav #sidenav mode="over">
+<mat-sidenav-container [hasBackdrop]="false">
+  <mat-sidenav #sidenav mode="push" [opened]="!(deviceService.isMobile())">
     <app-page-toolbar [sidenav]="sidenav"></app-page-toolbar>
   </mat-sidenav>
   <!-- Body -->
