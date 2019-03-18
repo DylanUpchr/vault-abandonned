@@ -1,1 +1,6 @@
-
+<mat-toolbar color="primary">
+  <button mat-icon-button (click)="sidenav.toggle()">
+    <mat-icon color="accent">menu</mat-icon>
+  </button>
+  <span>{{title | titlecase}}</span>
+</mat-toolbar>

@@ -1,16 +1,12 @@
-<!--Toolbar-->
-<app-page-toolbar></app-page-toolbar>
-<mat-toolbar color="primary">
-  <button mat-icon-button (click)="sidenav.toggle()"><mat-icon color="accent">menu</mat-icon></button>
-  <span>{{title | titlecase}}</span>
-</mat-toolbar>
 <!--Sidenav-->
 <mat-sidenav-container>
   <mat-sidenav #sidenav mode="over">
-    Sidenav content
+    <app-page-toolbar [sidenav]="sidenav"></app-page-toolbar>
   </mat-sidenav>
   <!-- Body -->
   <mat-sidenav-content>
+    <!--Toolbar-->
+    <app-page-toolbar [sidenav]="sidenav"></app-page-toolbar>
     <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>
