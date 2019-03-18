@@ -5,7 +5,7 @@ import { MatSidenav } from '@angular/material';
 @Component({
   selector: 'app-page-toolbar',
   templateUrl: './page-toolbar.component.html',
-  styleUrls: ['./page-toolbar.component.css']
+  styleUrls: ['./page-toolbar.component.scss']
 })
 export class PageToolbarComponent implements OnInit {
   title = 'vault';
