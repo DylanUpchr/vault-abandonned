@@ -8,16 +8,12 @@ import { Component, OnInit } from '@angular/core';
   ]
 })
 export class PageFooterComponent implements OnInit {
-  text = 'footer';
-
-  /*links = {
-    item1: {
-      text: 'Item 1',
-      href: '#'
-    }
-  };*/
-  links = [
+  linksInfo = [
     {text: 'About', href: '/about', icon: 'help_outline'}
+  ];
+  lists = [
+    {text: 'Information', links: this.linksInfo},
+    {text: 'Information', links: this.linksInfo}
   ];
 
   constructor() { }

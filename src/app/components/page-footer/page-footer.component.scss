@@ -22,6 +22,14 @@
   a{
     margin-left: 5px;
   }
+  mat-list{
+    margin: 20px; /*Lists start from the left and flex flow to the right*/
+    /*margin: auto*/ /*Space is evenly divided between the lists */
+  }
+  #listContainer{
+    width: 100%;
+    display: flex;
+  }
 }
 
 @include angular-material-theme($vault-theme);

@@ -1,10 +1,12 @@
 <mat-toolbar color="primary">
-  <mat-list>
-      <h3>Links</h3>
-      <mat-list-item *ngFor="let link of links; last as last">
+  <span id="listContainer">
+    <mat-list *ngFor="let list of lists;">
+      <h3>{{list.text}}</h3>
+      <mat-list-item *ngFor="let link of list.links; last as last">
         <mat-icon color="accent">{{link.icon}}</mat-icon>
         <a routerLink="{{link.href}}">{{link.text}}</a>
         <mat-divider color="accent" [inset]="true" *ngIf="!last"></mat-divider>
       </mat-list-item>
-  </mat-list>
+    </mat-list>
+  </span>
 </mat-toolbar>
