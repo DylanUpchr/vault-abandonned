@@ -12,7 +12,6 @@ export class PageFooterComponent implements OnInit {
     {text: 'About', href: '/about', icon: 'help_outline'}
   ];
   lists = [
-    {text: 'Information', links: this.linksInfo},
     {text: 'Information', links: this.linksInfo}
   ];
 
