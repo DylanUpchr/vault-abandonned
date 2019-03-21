@@ -16,10 +16,12 @@
   mat-nav-list{
     padding: 0px;
   }
-  mat-list-item-content, mat-expansion-panel-body{ /*Not working but need to remove padding of these elements*/
-    padding: 0px;
+  :host /deep/ .mat-list-item-content{ /*host deep hack*/
+    padding: 0px !important;
   }
-
+  :host /deep/ .mat-expansion-panel-body{
+    padding: 5px;
+  }
   h3{
     color: mat-color($primary);
     padding: 0px;
