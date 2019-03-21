@@ -1,7 +1,5 @@
-import { SnackbarService } from './services/snackbar.service';
 import { Component } from '@angular/core';
 import { DeviceDetectorService } from 'ngx-device-detector';
-import { ResourceNotFoundComponent } from './components/snackbar/resource-not-found/resource-not-found.component';
 
 @Component({
   selector: 'app-root',
@@ -10,9 +8,7 @@ import { ResourceNotFoundComponent } from './components/snackbar/resource-not-fo
 })
 export class AppComponent {
   title = 'vault';
-  constructor(public deviceService: DeviceDetectorService,
-              public snackbarService: SnackbarService) { }
+  constructor(public deviceService: DeviceDetectorService) { }
   ngOnInit() {
-    this.snackbarService.open(ResourceNotFoundComponent);
   }
 }

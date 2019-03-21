@@ -15,6 +15,7 @@ import { PageToolbarComponent } from './components/page-toolbar/page-toolbar.com
 import { ResourceNotFoundComponent } from './components/snackbar/resource-not-found/resource-not-found.component';
 import { InMemoryDataService } from './services/in-memory-data.service';
 import { SnackbarService } from './services/snackbar.service';
+import { ComponentNotFoundComponent } from './components/component-not-found/component-not-found.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { SnackbarService } from './services/snackbar.service';
     LoginComponent,
     PageFooterComponent,
     PageToolbarComponent,
-    ResourceNotFoundComponent
+    ResourceNotFoundComponent,
+    ComponentNotFoundComponent
   ],
   imports: [
     BrowserModule,
