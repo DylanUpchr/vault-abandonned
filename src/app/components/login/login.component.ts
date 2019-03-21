@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-/*let sha256 = require('crypto-js/sha256');
-let encHex = require('crypto-js/enc-hex');*/
+let sha256 = require('crypto-js/sha256');
+let encHex = require('crypto-js/enc-hex');
 
 import { User } from '../../classes/user';
 import { DatastoreService } from '../../services/datastore.service';
@@ -29,9 +29,9 @@ export class LoginComponent implements OnInit {
       data['users'].forEach(user => {
         console.log(user);
         if (user.Username === username) {
-          /*if (user.Password === sha256(password).toString(encHex)) {
+          if (user.Password === sha256(password).toString(encHex)) {
             console.log('logged in');
-          }*/
+          }
         }
       });
     });
