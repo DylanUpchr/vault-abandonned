@@ -13,8 +13,5 @@
   a{
     width: 100%;
   }
-  .mat-nav-list .mat-list-item .mat-list-item-content{
-    color: red;
-  }
 }
 @include angular-material-theme($vault-theme);
