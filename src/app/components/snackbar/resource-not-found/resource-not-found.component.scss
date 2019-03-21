@@ -6,8 +6,6 @@
   $primary: map-get($theme, primary);
   $accent: map-get($theme, accent);
   $warn: map-get($theme, warn);
-  div{
-  }
   span{
     display: inline-block;
     color: mat-color($warn);
