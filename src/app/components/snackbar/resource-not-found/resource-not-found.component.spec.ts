@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RessourceNotFoundComponent } from './ressource-not-found.component';
+import { ResourceNotFoundComponent } from './resource-not-found.component';
 
-describe('RessourceNotFoundComponent', () => {
-  let component: RessourceNotFoundComponent;
-  let fixture: ComponentFixture<RessourceNotFoundComponent>;
+describe('ResourceNotFoundComponent', () => {
+  let component: ResourceNotFoundComponent;
+  let fixture: ComponentFixture<ResourceNotFoundComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RessourceNotFoundComponent ]
+      declarations: [ ResourceNotFoundComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RessourceNotFoundComponent);
+    fixture = TestBed.createComponent(ResourceNotFoundComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

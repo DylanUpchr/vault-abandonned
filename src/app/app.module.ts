@@ -12,7 +12,7 @@ import { FileViewComponent } from './components/file-view/file-view.component';
 import { LoginComponent } from './components/login/login.component';
 import { PageFooterComponent } from './components/page-footer/page-footer.component';
 import { PageToolbarComponent } from './components/page-toolbar/page-toolbar.component';
-import { RessourceNotFoundComponent } from './components/snackbar/ressource-not-found/ressource-not-found.component';
+import { ResourceNotFoundComponent } from './components/snackbar/resource-not-found/resource-not-found.component';
 import { InMemoryDataService } from './services/in-memory-data.service';
 import { SnackbarService } from './services/snackbar.service';
 
@@ -23,7 +23,7 @@ import { SnackbarService } from './services/snackbar.service';
     LoginComponent,
     PageFooterComponent,
     PageToolbarComponent,
-    RessourceNotFoundComponent
+    ResourceNotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +40,7 @@ import { SnackbarService } from './services/snackbar.service';
     })
   ],
   entryComponents: [
-    RessourceNotFoundComponent
+    ResourceNotFoundComponent
   ],
   providers: [
     SnackbarService

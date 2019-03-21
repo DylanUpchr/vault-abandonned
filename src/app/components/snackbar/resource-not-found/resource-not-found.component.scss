@@ -1,0 +1,14 @@
+@import '~@angular/material/theming';
+@import '../../../../custom-theme.scss';
+
+
+@mixin angular-material-theme($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+  span{
+    color: mat-color($warn);
+    margin-inline-end: 5px;
+  }
+}
+@include angular-material-theme($vault-theme);
