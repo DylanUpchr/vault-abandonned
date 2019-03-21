@@ -3,7 +3,7 @@
   <mat-sidenav #sidenav mode="over" > <!--[opened]="!(deviceService.isMobile())"-->
     <!--Toolbar-->
     <app-page-toolbar [sidenav]="sidenav"></app-page-toolbar>
-    <app-sidenav-content></app-sidenav-content>
+    <app-sidenav-content [sidenav]="sidenav"></app-sidenav-content>
   </mat-sidenav>
   <!-- Body -->
   <mat-sidenav-content>

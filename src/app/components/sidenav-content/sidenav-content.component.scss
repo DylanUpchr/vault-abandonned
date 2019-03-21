@@ -13,5 +13,20 @@
   a{
     width: 100%;
   }
+  mat-nav-list{
+    padding: 0px;
+  }
+  .mat-list-item-content{
+    padding: 0px;
+  }
+  h3{
+    color: mat-color($primary);
+    padding: 0px;
+    padding-top: 10px;
+    margin: 0px;
+    margin-left: 5px;
+  }
 }
+
+
 @include angular-material-theme($vault-theme);

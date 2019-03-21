@@ -1,4 +1,3 @@
-import { MaterialModule } from './../../material.module';
 import { Component, OnInit, Input } from '@angular/core';
 import { MatSidenav } from '@angular/material';
 
