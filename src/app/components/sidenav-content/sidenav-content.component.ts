@@ -6,7 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sidenav-content.component.scss']
 })
 export class SidenavContentComponent implements OnInit {
-
+  items = [
+    {text: 'dashboard', href: '/dashboard', icon: 'dashboard'}
+  ];
   constructor() { }
 
   ngOnInit() {

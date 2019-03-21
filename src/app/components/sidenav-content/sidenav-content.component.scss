@@ -1,0 +1,20 @@
+@import '~@angular/material/theming';
+@import '../../../custom-theme.scss';
+
+
+@mixin angular-material-theme($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+  mat-icon{
+    color: mat-color($primary);
+    margin-inline-end: 10px;
+  }
+  a{
+    width: 100%;
+  }
+  .mat-nav-list .mat-list-item .mat-list-item-content{
+    color: red;
+  }
+}
+@include angular-material-theme($vault-theme);
