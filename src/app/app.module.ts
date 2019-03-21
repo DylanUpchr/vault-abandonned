@@ -12,8 +12,9 @@ import { FileViewComponent } from './components/file-view/file-view.component';
 import { LoginComponent } from './components/login/login.component';
 import { PageFooterComponent } from './components/page-footer/page-footer.component';
 import { PageToolbarComponent } from './components/page-toolbar/page-toolbar.component';
-import { RessourceNotFoundComponent } from './components/ressource-not-found/ressource-not-found.component';
+import { RessourceNotFoundComponent } from './components/snackbar/ressource-not-found/ressource-not-found.component';
 import { InMemoryDataService } from './services/in-memory-data.service';
+import { SnackbarService } from './services/snackbar.service';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,9 @@ import { InMemoryDataService } from './services/in-memory-data.service';
       dataEncapsulation: false
     })
   ],
-  providers: [],
+  providers: [
+    SnackbarService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

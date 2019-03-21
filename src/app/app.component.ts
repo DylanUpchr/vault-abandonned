@@ -9,6 +9,7 @@ import { DeviceDetectorService } from 'ngx-device-detector';
 export class AppComponent {
   title = 'vault';
   constructor(public deviceService: DeviceDetectorService) {
-    console.log(deviceService.isDesktop);
+  }
+  ngOnInit() {
   }
 }
