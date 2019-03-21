@@ -23,7 +23,7 @@ export class SnackbarService {
     this.snackBarConfig = new MatSnackBarConfig();
     this.snackBarConfig.horizontalPosition = this.horizontalPosition;
     this.snackBarConfig.verticalPosition = this.verticalPosition;
-    this.snackBarConfig.duration = parseInt(this.snackBarAutoHide, 0);
+    //this.snackBarConfig.duration = parseInt(this.snackBarAutoHide, 0);
     setTimeout(() => {
       this.snackBarRef = this.snackBar.openFromComponent(component, this.snackBarConfig);
     }, 20);
