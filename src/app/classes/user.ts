@@ -1,9 +1,11 @@
 export class User {
   Id: number;
   Username: string;
+  Password: string;
 
-  constructor(id?: number, username?: string){
+  constructor(id?: number, username?: string, password?: string) {
     this.Id = id;
     this.Username = username;
+    this.Password = password;
   }
 }

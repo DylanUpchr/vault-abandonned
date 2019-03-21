@@ -13,10 +13,10 @@ export class DatastoreService {
 
   constructor() { }
 
-  updateValue(user: User) {
+  setCurrentUser(user: User) {
     this.dataStore.next(user);
   }
-  getValue(): Observable<User> {
+  getCurrentUser(): Observable<User> {
     return this.data;
   }
 }
