@@ -5,7 +5,7 @@
       <mat-list-item *ngFor="let link of list.links; last as last">
         <mat-icon color="accent">{{link.icon}}</mat-icon>
         <a routerLink="{{link.href}}">{{link.text}}</a>
-        <mat-divider color="accent" [inset]="true" *ngIf="!last"></mat-divider>
+        <mat-divider [inset]="true" *ngIf="!last"></mat-divider>
       </mat-list-item>
     </mat-list>
   </span>
