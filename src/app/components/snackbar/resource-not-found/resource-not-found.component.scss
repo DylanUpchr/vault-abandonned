@@ -8,7 +8,7 @@
   $warn: map-get($theme, warn);
   span{
     color: mat-color($warn);
-    margin-inline-end: 5px;
+    margin-inline-end: 15px;
   }
 }
 @include angular-material-theme($vault-theme);

@@ -1,3 +1,4 @@
+import { SnackbarService } from './../../../services/snackbar.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ResourceNotFoundComponent implements OnInit {
 
-  constructor() { }
+  constructor(public snackbarService: SnackbarService) { }
 
   ngOnInit() {
   }
-
+  dismiss(){
+    this.snackbarService.dismiss();
+  }
 }

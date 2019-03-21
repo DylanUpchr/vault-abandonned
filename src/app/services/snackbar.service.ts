@@ -1,5 +1,4 @@
-import { RessourceNotFoundComponent } from './../components/snackbar/ressource-not-found/ressource-not-found.component';
-import { Injectable, Component } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { MatSnackBar,
   MatSnackBarConfig,
   MatSnackBarHorizontalPosition,
@@ -15,7 +14,7 @@ export class SnackbarService {
   snackBarConfig: MatSnackBarConfig;
   snackBarRef: MatSnackBarRef<any>;
   horizontalPosition: MatSnackBarHorizontalPosition = 'center';
-  verticalPosition: MatSnackBarVerticalPosition = 'top';
+  verticalPosition: MatSnackBarVerticalPosition = 'bottom';
   snackBarAutoHide = '3000';
 
   constructor(private snackBar: MatSnackBar) {
@@ -28,5 +27,8 @@ export class SnackbarService {
     setTimeout(() => {
       this.snackBarRef = this.snackBar.openFromComponent(component, this.snackBarConfig);
     }, 20);
+   }
+   dismiss(){
+     this.snackBarRef.dismiss();
    }
 }
