@@ -39,6 +39,9 @@ import { SnackbarService } from './services/snackbar.service';
       dataEncapsulation: false
     })
   ],
+  entryComponents: [
+    RessourceNotFoundComponent
+  ],
   providers: [
     SnackbarService
   ],
