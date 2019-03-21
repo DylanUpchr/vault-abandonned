@@ -16,6 +16,7 @@ import { ResourceNotFoundComponent } from './components/snackbar/resource-not-fo
 import { InMemoryDataService } from './services/in-memory-data.service';
 import { SnackbarService } from './services/snackbar.service';
 import { ComponentNotFoundComponent } from './components/component-not-found/component-not-found.component';
+import { SidenavContentComponent } from './components/sidenav-content/sidenav-content.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { ComponentNotFoundComponent } from './components/component-not-found/com
     PageFooterComponent,
     PageToolbarComponent,
     ResourceNotFoundComponent,
-    ComponentNotFoundComponent
+    ComponentNotFoundComponent,
+    SidenavContentComponent
   ],
   imports: [
     BrowserModule,
