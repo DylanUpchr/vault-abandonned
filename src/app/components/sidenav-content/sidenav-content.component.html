@@ -1,6 +1,6 @@
 <mat-nav-list>
   <div *ngFor="let list of lists; last as lastList">
-    <h3>{{list.text}}</h3>
+    <h3>{{list.text | titlecase}}</h3>
     <mat-divider></mat-divider>
     <a mat-list-item routerLink="{{item.href}}" *ngFor="let item of list.items;" (click)="closeSidenav()">
       <mat-icon>{{item.icon}}</mat-icon>

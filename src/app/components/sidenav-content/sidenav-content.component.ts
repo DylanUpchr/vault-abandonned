@@ -9,16 +9,17 @@ import { MatSidenav } from '@angular/material';
 export class SidenavContentComponent implements OnInit {
   quickLinkItems = [
     {text: 'dashboard', href: '/dashboard', icon: 'dashboard'},
-    {text: 'files', href: '/files', icon: 'folder'}
+    {text: 'files', href: '/files', icon: 'folder'},
+    {text: 'settings', href: '/settings', icon: 'settings'}
   ];
   userItems = [
-    {text: 'My account', href: '/account', icon: 'account_circle'}
+    {text: 'my account', href: '/account', icon: 'account_circle'}
   ];
 
 
   lists = [
-    {text: 'User', items: this.userItems},
-    {text: 'Quick Links', items: this.quickLinkItems}
+    {text: 'user', items: this.userItems},
+    {text: 'quick links', items: this.quickLinkItems}
   ];
 
   @Input() sidenav: MatSidenav;
