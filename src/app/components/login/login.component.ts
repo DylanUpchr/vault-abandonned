@@ -1,11 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
-let sha256 = require('crypto-js/sha256');
-let encHex = require('crypto-js/enc-hex');
-
-import { User } from '../../classes/user';
-import { DatastoreService } from '../../services/datastore.service';
+import { UserService } from './../../services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -13,27 +7,11 @@ import { DatastoreService } from '../../services/datastore.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  private url = 'api/db';
-  constructor(private http: HttpClient,
-              public datastoreService: DatastoreService) {
-    }
-    getUsers(): Observable<Object>{
-      return this.http.get<Object>(this.url);
+  constructor(private userService: UserService) {
     }
 
   ngOnInit() {
-    this.attemptLogIn('admin', 'admin');
-  }
-  attemptLogIn(username: string, password: string) {
-    this.getUsers().subscribe(data => {
-      data['users'].forEach(user => {
-        console.log(user);
-        if (user.Username === username) {
-          if (user.Password === sha256(password).toString(encHex)) {
-            console.log('logged in');
-          }
-        }
-      });
-    });
+    this.userService.attemptLogIn('admin', 'admin');
+    console.log(this.userService.isLoggedIn());
   }
 }
