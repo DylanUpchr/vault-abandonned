@@ -4,6 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DeviceDetectorModule } from 'ngx-device-detector';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,6 +20,7 @@ import { ComponentNotFoundComponent } from './components/component-not-found/com
 import { SidenavContentComponent } from './components/sidenav-content/sidenav-content.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AboutComponent } from './components/about/about.component';
+import { UserService } from './services/user.service';
 
 @NgModule({
   declarations: [
@@ -45,13 +47,16 @@ import { AboutComponent } from './components/about/about.component';
     // Remove it when a real server is ready to receive requests.
     HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, {
       dataEncapsulation: false
-    })
+    }),
+    FormsModule,
+    ReactiveFormsModule
   ],
   entryComponents: [
     ResourceNotFoundComponent
   ],
   providers: [
-    SnackbarService
+    SnackbarService,
+    UserService
   ],
   bootstrap: [AppComponent]
 })
