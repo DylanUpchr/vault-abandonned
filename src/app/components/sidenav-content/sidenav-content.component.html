@@ -1,9 +1,12 @@
 <mat-nav-list>
-  <mat-expansion-panel *ngFor="let list of lists; last as lastList" flat expanded>
-    <mat-expansion-panel-header>{{list.text | titlecase}}</mat-expansion-panel-header>
-    <a mat-list-item routerLink="{{item.href}}" *ngFor="let item of list.items;" (click)="closeSidenav()">
-      <mat-icon>{{item.icon}}</mat-icon>
-      {{item.text | titlecase}}
-    </a>
-  </mat-expansion-panel>
+  <span *ngFor="let list of lists;">
+    <span>{{list.text}}{{(isVisible(list)| async)}}</span><br>
+    <mat-expansion-panel *ngIf="(isVisible(list)| async)" expanded>
+      <mat-expansion-panel-header>{{list.text | titlecase}}</mat-expansion-panel-header>
+      <a mat-list-item routerLink="{{item.href}}" *ngFor="let item of list.items;" (click)="sidenav.close()">
+        <mat-icon>{{item.icon}}</mat-icon>
+        {{item.text | titlecase}}
+      </a>
+    </mat-expansion-panel>
+  </span>
 </mat-nav-list>

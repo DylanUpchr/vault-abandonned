@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import sha256 from 'crypto-js/sha256';
 import encHex from 'crypto-js/enc-hex';
 
-import { User } from '../classes/user';
+import { User, Roles } from '../classes/user';
 import { DatastoreService } from '../services/datastore.service';
 
 @Injectable({
@@ -22,15 +22,32 @@ export class UserService {
   getUsers(): Observable<object> {
     return this.http.get<object>(this.url);
   }
-
+  getUser(): Observable<User> {
+    return this.datastoreService.getCurrentUser();
+  }
+  getUserRole(): Observable<Roles> {
+    const userRole = new Subject<Roles>();
+    this.getUser().subscribe(user => {
+      if ( user.Id !== undefined) {
+        userRole.next(user.Role);
+      } else {
+        userRole.next(Roles.Guest);
+      }
+    });
+    return userRole.asObservable();
+  }
   attemptLogIn(email: string, password: string): Observable<string> {
     const errorMessage = new Subject<string>();
     this.getUsers().subscribe(data => {
       Object.create(data).users.forEach(user => {
         if (user.Email === email) {
-          if (user.Password === sha256(password).toString(encHex)) {
+          if (user.Password === sha256(password + user.Username).toString(encHex)) {
             this.datastoreService.setCurrentUser(user);
-            this.router.navigate(['/dashboard']);
+            if (user.Role === Roles.Admin) {
+              this.router.navigate(['/dashboard']);
+            } else {
+              this.router.navigate(['/files']);
+            }
           } else {
             errorMessage.next('Password Incorrect.');
           }
