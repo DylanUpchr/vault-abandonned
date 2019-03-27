@@ -1,6 +1,5 @@
 <mat-nav-list>
   <span *ngFor="let list of lists;">
-    <span>{{list.text}}{{(isVisible(list)| async)}}</span><br>
     <mat-expansion-panel *ngIf="(isVisible(list)| async)" expanded>
       <mat-expansion-panel-header>{{list.text | titlecase}}</mat-expansion-panel-header>
       <a mat-list-item routerLink="{{item.href}}" *ngFor="let item of list.items;" (click)="sidenav.close()">

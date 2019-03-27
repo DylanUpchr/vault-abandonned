@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, Observer, of as observableOf, Subject } from 'rxjs';
+import { Observable, of, Subject, BehaviorSubject } from 'rxjs';
 import { Router } from '@angular/router';
 import sha256 from 'crypto-js/sha256';
 import encHex from 'crypto-js/enc-hex';
@@ -26,7 +26,7 @@ export class UserService {
     return this.datastoreService.getCurrentUser();
   }
   getUserRole(): Observable<Roles> {
-    const userRole = new Subject<Roles>();
+    const userRole = new BehaviorSubject<Roles>(Roles.Guest);
     this.getUser().subscribe(user => {
       if ( user.Id !== undefined) {
         userRole.next(user.Role);
@@ -63,7 +63,7 @@ export class UserService {
     let currentUser: User;
     this.datastoreService.getCurrentUser().subscribe(user => {
       currentUser = user;
-      value = observableOf((currentUser.Id !== 0 && currentUser.Id !== undefined ? true : false));
+      value = of((currentUser.Id !== 0 && currentUser.Id !== undefined ? true : false));
     });
     return value;
   }

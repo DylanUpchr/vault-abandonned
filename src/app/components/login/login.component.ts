@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
       this.userService.getUserRole().subscribe(role => {
         if (role === Roles.Admin) {
           this.router.navigate(['/dashboard']);
-        } else {
+        } else if (role === Roles.User) {
           this.router.navigate(['/files']);
         }
       });

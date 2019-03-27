@@ -2,8 +2,7 @@ import { UserService } from './../../services/user.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { MatSidenav } from '@angular/material';
 import { Roles } from '../../classes/user';
-import { Observable, Subject, BehaviorSubject } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { Observable, of, BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-sidenav-content',
@@ -30,12 +29,9 @@ export class SidenavContentComponent implements OnInit {
 
   @Input() sidenav: MatSidenav;
   constructor(private userService: UserService) { }
-
-  ngOnInit() {
-  }
+  ngOnInit() {}
   isVisible(list): Observable<boolean> {
-    const result = new Subject<boolean>();
-
+    const result = new BehaviorSubject<boolean>(false);
     this.userService.getUserRole().subscribe(role => {
       switch (list.visibleIfRole) {
         case Roles.Guest:
@@ -49,7 +45,6 @@ export class SidenavContentComponent implements OnInit {
           break;
       }
     });
-    //Result not returning, observableOf(bool) works however
-    return result.asObservable();
+    return result;
   }
 }
