@@ -15,16 +15,21 @@
     justify-content: center;
   }
   #loginForm{
-    border-radius: 4px;
-    box-shadow: 0px 0px 25px 1px rgba(0,0,0,0.75);
-    padding: 10px;
+    box-shadow: 0px 0px 15px 1px rgba(0,0,0,0.50);
   }
   div, div form mat-form-field{
     width: 250px;
   }
   #submit{
     background-color: mat-color($primary);
-    margin-left: 180px;
+    float: right;
+  }
+  mat-card-title{
+    color: mat-color($primary);
+  }
+  mat-card-footer{
+    padding-left: 16px;
+    padding-right: 16px;
   }
 }
 

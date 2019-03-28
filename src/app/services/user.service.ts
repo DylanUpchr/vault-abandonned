@@ -13,11 +13,6 @@ import { DatastoreService } from '../services/datastore.service';
 })
 export class UserService {
   private url = 'api/db';
-  arrayToObject = (array) =>
-   array.reduce((obj, item) => {
-     obj[item.id] = item;
-     return obj;
-   }, {})
 
   getUsers(): Observable<object> {
     return this.http.get<object>(this.url);
@@ -25,10 +20,17 @@ export class UserService {
   getUser(): Observable<User> {
     return this.datastoreService.getCurrentUser();
   }
+  getUserByEmail(email: string): Observable<User> {
+    const user = new Subject<User>();
+    this.getUsers().subscribe(data => {
+      user.next(Object.create(data).users.filter(u => u.Email === email)[0]);
+    });
+    return user;
+  }
   getUserRole(): Observable<Roles> {
     const userRole = new BehaviorSubject<Roles>(Roles.Guest);
     this.getUser().subscribe(user => {
-      if ( user.Id !== undefined) {
+      if (user.Id !== undefined) {
         userRole.next(user.Role);
       } else {
         userRole.next(Roles.Guest);
@@ -38,38 +40,37 @@ export class UserService {
   }
   attemptLogIn(email: string, password: string): Observable<string> {
     const errorMessage = new Subject<string>();
-    this.getUsers().subscribe(data => {
-      Object.create(data).users.forEach(user => {
-        if (user.Email === email) {
-          if (user.Password === sha256(password + user.Username).toString(encHex)) {
-            this.datastoreService.setCurrentUser(user);
-            if (user.Role === Roles.Admin) {
-              this.router.navigate(['/dashboard']);
-            } else {
-              this.router.navigate(['/files']);
-            }
+    this.getUserByEmail(email).subscribe(user => {
+      if (user != null) {
+        if (user.Password === sha256(password + user.Username).toString(encHex)) {
+          this.datastoreService.setCurrentUser(user);
+          if (user.Role === Roles.Admin) {
+            this.router.navigate(['/dashboard']);
           } else {
-            errorMessage.next('Password Incorrect.');
+            this.router.navigate(['/files']);
           }
         } else {
-          errorMessage.next('Email Incorrect.');
+          errorMessage.next('Password Incorrect.');
         }
-      });
+      } else {
+        errorMessage.next('Email Incorrect.');
+      }
     });
     return errorMessage;
   }
   isLoggedIn(): Observable<boolean> {
-    let value: Observable<boolean>;
+    const value = new BehaviorSubject<boolean>(false);
     let currentUser: User;
     this.datastoreService.getCurrentUser().subscribe(user => {
       currentUser = user;
-      value = of((currentUser.Id !== 0 && currentUser.Id !== undefined ? true : false));
+      value.next(currentUser.Id !== 0 && currentUser.Id !== undefined ? true : false);
     });
     return value;
   }
 
-  constructor(private http: HttpClient,
-              public datastoreService: DatastoreService,
-              private router: Router) { }
-
+  constructor(
+    private http: HttpClient,
+    private datastoreService: DatastoreService,
+    private router: Router
+  ) {}
 }
