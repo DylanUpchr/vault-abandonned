@@ -1,0 +1,24 @@
+@import '~@angular/material/theming';
+@import '../../../../custom-theme.scss';
+
+
+@mixin angular-material-theme($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+
+  mat-icon{
+    color: mat-color($accent);
+    margin-bottom: 8.75px;
+  }
+  button{
+    /*height: calc(100% - 8.75px);*/
+    min-width: 48px;
+    padding: 0px;
+  }
+  mat-menu button{
+    width: 100% !important;
+  }
+}
+
+@include angular-material-theme($vault-theme);

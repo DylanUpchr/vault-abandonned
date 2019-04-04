@@ -6,12 +6,7 @@
     <div id="flexContainer"> <!--REVERSED FLEX-DIRECTION-->
         <!--views/tools-->
         <span *ngFor="let toolbarButton of toolbarButtons; let i = index"> <!--Encapsulate button and mat-menu in componenet-->
-          <button mat-button matTooltip="{{toolbarButton.tooltip}}" [matMenuTriggerFor]="menu">
-            <mat-icon color="accent">{{toolbarButton.icon}}</mat-icon>
-          </button>
-          <mat-menu #menu="matMenu" *ngIf="toolbarButton.menu">
-            <button mat-menu-item>{{toolbarButton.tooltip}}</button>
-          </mat-menu>
+            <app-toolbar-button [toolbarButton]="toolbarButton"></app-toolbar-button>
         </span>
         <!--Search bar-->
         <form>

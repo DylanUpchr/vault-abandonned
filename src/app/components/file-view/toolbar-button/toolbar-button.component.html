@@ -1,0 +1,9 @@
+<!--<mat-menu #menu="matMenu" *ngIf="this.Menu">
+  <button mat-menu-item>{{this.Tooltip}}</button>
+</mat-menu>-->
+<button mat-button matTooltip="{{this.Tooltip}}" [matMenuTriggerFor]="menu">
+  <mat-icon color="accent">{{this.Icon}}</mat-icon>
+</button>
+<mat-menu #menu="matMenu">
+  <button mat-button *ngFor="let item of this.Menu" style="width: 100%">{{item.text}}</button>
+</mat-menu>
