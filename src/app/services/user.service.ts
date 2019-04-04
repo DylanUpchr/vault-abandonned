@@ -9,6 +9,7 @@ import jwt from 'jsonwebtoken';
 
 import { User, Roles } from '../classes/user';
 import { DatastoreService } from '../services/datastore.service';
+import { environment } from 'src/environments/environment';
 
 const TOKEN_CONFIG = {
   secret: 'test',
@@ -94,8 +95,8 @@ export class UserService {
           res.next('Email Incorrect.');
         }
       });
-    } else if (!token && !email) {
-      res.next('No token or email provided.');
+    } else if (!email) {
+      res.next('No email provided.');
     }
     return res;
   }
