@@ -2,15 +2,29 @@ import { Router } from '@angular/router';
 import { User, Roles } from './../../classes/user';
 import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from '@angular/forms';
-import {ErrorStateMatcher} from '@angular/material/core';
+import {
+  FormControl,
+  FormGroup,
+  FormGroupDirective,
+  NgForm,
+  Validators
+} from '@angular/forms';
+import { ErrorStateMatcher } from '@angular/material/core';
 
 import { UserService } from './../../services/user.service';
+import { CookieService } from 'ngx-cookie-service';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+  isErrorState(
+    control: FormControl | null,
+    form: FormGroupDirective | NgForm | null
+  ): boolean {
     const isSubmitted = form && form.submitted;
-    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
+    return !!(
+      control &&
+      control.invalid &&
+      (control.dirty || control.touched || isSubmitted)
+    );
   }
 }
 
@@ -19,21 +33,23 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-
 export class LoginComponent implements OnInit {
   errorMessage: Observable<string>;
   loginFormGroup = new FormGroup({
     emailFormControl: new FormControl('', [
       Validators.required,
-      Validators.email,
-      ]),
+      Validators.email
+    ]),
     passwordFormControl: new FormControl('')
   });
 
   matcher = new MyErrorStateMatcher();
 
-  constructor(private userService: UserService,
-              private router: Router) {}
+  constructor(
+    private userService: UserService,
+    private router: Router,
+    private cookieService: CookieService
+  ) {}
 
   ngOnInit() {
     if (this.userService.isLoggedIn()) {
@@ -45,12 +61,16 @@ export class LoginComponent implements OnInit {
         }
       });
     }
+    const token = this.cookieService.get('authToken');
+    if (token !== '' && token !== null) {
+      this.errorMessage = this.userService.attemptLogIn(null, null, token);
+    }
   }
 
   onSubmit() {
     this.errorMessage = this.userService.attemptLogIn(
       this.loginFormGroup.value.emailFormControl,
       this.loginFormGroup.value.passwordFormControl
-      );
+    );
   }
 }

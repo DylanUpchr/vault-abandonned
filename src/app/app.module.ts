@@ -5,6 +5,7 @@ import { DeviceDetectorModule } from 'ngx-device-detector';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CookieService } from 'ngx-cookie-service';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -56,7 +57,8 @@ import { UserService } from './services/user.service';
   ],
   providers: [
     SnackbarService,
-    UserService
+    UserService,
+    CookieService
   ],
   bootstrap: [AppComponent]
 })

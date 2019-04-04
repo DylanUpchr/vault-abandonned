@@ -1,12 +1,19 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, of, Subject, BehaviorSubject } from 'rxjs';
+import { CookieService } from 'ngx-cookie-service';
+import { Observable, Subject, BehaviorSubject } from 'rxjs';
 import { Router } from '@angular/router';
+import cryptoJS from 'crypto-js';
 import sha256 from 'crypto-js/sha256';
-import encHex from 'crypto-js/enc-hex';
+import jwt from 'jsonwebtoken';
 
 import { User, Roles } from '../classes/user';
 import { DatastoreService } from '../services/datastore.service';
+
+const TOKEN_CONFIG = {
+  secret: 'test',
+  duration: 120 // 2 minute token
+};
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +26,13 @@ export class UserService {
   }
   getUser(): Observable<User> {
     return this.datastoreService.getCurrentUser();
+  }
+  getUserById(id: number) {
+    const user = new Subject<User>();
+    this.getUsers().subscribe(data => {
+      user.next(Object.create(data).users.filter(u => u.Id === id)[0]);
+    });
+    return user;
   }
   getUserByEmail(email: string): Observable<User> {
     const user = new Subject<User>();
@@ -38,32 +52,78 @@ export class UserService {
     });
     return userRole.asObservable();
   }
-  attemptLogIn(email: string, password: string): Observable<string> {
-    const errorMessage = new Subject<string>();
-    this.getUserByEmail(email).subscribe(user => {
-      if (user != null) {
-        if (user.Password === sha256(password + user.Username).toString(encHex)) {
-          this.datastoreService.setCurrentUser(user);
-          if (user.Role === Roles.Admin) {
-            this.router.navigate(['/dashboard']);
+  attemptLogIn(
+    email?: string,
+    password?: string,
+    token?: string
+  ): Observable<string> {
+    const res = new BehaviorSubject<string>('');
+    if (token) {
+      this.verifyJWT(token).subscribe(data => {
+        if (data.name !== 'TokenExpiredError') {
+          this.getUserById(data.id).subscribe(user => {
+            this.datastoreService.setCurrentUser(user);
+            if (user.Role === Roles.Admin) {
+              this.router.navigate(['/dashboard']);
+            } else {
+              this.router.navigate(['/files']);
+            }
+          });
+        } else {
+          res.next('Token Expired');
+        }
+      });
+    } else if (email && password) {
+      this.getUserByEmail(email).subscribe(user => {
+        if (user != null) {
+          if (
+            user.Password ===
+            sha256(password + user.Username).toString(cryptoJS.encHex)
+          ) {
+            this.datastoreService.setCurrentUser(user);
+            this.cookieService.set('authToken', this.createJWT(user.Id));
+            if (user.Role === Roles.Admin) {
+              this.router.navigate(['/dashboard']);
+            } else {
+              this.router.navigate(['/files']);
+            }
           } else {
-            this.router.navigate(['/files']);
+            res.next('Password Incorrect.');
           }
         } else {
-          errorMessage.next('Password Incorrect.');
+          res.next('Email Incorrect.');
         }
-      } else {
-        errorMessage.next('Email Incorrect.');
-      }
-    });
-    return errorMessage;
+      });
+    } else if (!token && !email) {
+      res.next('No token or email provided.');
+    }
+    return res;
   }
   isLoggedIn(): Observable<boolean> {
     const value = new BehaviorSubject<boolean>(false);
     let currentUser: User;
     this.datastoreService.getCurrentUser().subscribe(user => {
       currentUser = user;
-      value.next(currentUser.Id !== 0 && currentUser.Id !== undefined ? true : false);
+      value.next(
+        currentUser.Id !== 0 && currentUser.Id !== undefined ? true : false
+      );
+    });
+    return value;
+  }
+  createJWT(userId: number): string {
+    const token = jwt.sign({ id: userId }, TOKEN_CONFIG.secret, {
+      expiresIn: TOKEN_CONFIG.duration
+    }); //Create JWT Token
+    return token;
+  }
+  verifyJWT(token): Observable<any> {
+    const value = new BehaviorSubject<any>('');
+    jwt.verify(token, TOKEN_CONFIG.secret, function(err, decoded) {
+      if (err) {
+        value.next(err);
+      } else {
+        value.next(decoded);
+      }
     });
     return value;
   }
@@ -71,6 +131,7 @@ export class UserService {
   constructor(
     private http: HttpClient,
     private datastoreService: DatastoreService,
-    private router: Router
+    private router: Router,
+    private cookieService: CookieService
   ) {}
 }
