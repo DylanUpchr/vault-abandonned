@@ -9,12 +9,8 @@ import jwt from 'jsonwebtoken';
 
 import { User, Roles } from '../classes/user';
 import { DatastoreService } from '../services/datastore.service';
-import { environment } from 'src/environments/environment';
+import { TOKEN_CONFIG } from '../config/tokenConfig';
 
-const TOKEN_CONFIG = {
-  secret: 'test',
-  duration: 120 // 2 minute token
-};
 
 @Injectable({
   providedIn: 'root'
