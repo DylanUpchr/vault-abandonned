@@ -1,13 +1,23 @@
 <div>
   <!--Navigation (sidenav?)-->
 
-  <!--Search / Sort/Group Toolbar-->
+  <!--Search / Toolbar-->
   <mat-toolbar color="primary">
-    <!--Search bar-->
+    <div id="flexContainer"> <!--REVERSED FLEX-DIRECTION-->
+        <!--views/tools-->
+        <span *ngFor="let toolbarButton of toolbarButtons">
+          <button mat-button matTooltip="{{toolbarButton.tooltip}}">
+            <mat-icon color="accent">{{toolbarButton.icon}}</mat-icon>
+          </button>
+        </span>
+        <!--Search bar-->
+        <form>
+          <mat-form-field>
+              <input matInput placeholder="Search">
+          </mat-form-field>
 
-    <!--Sort/group tools-->
-    <span>
-
-    </span>
+          <button type="submit" mat-button><mat-icon>search</mat-icon></button>
+        </form>
+    </div>
   </mat-toolbar>
 </div>
