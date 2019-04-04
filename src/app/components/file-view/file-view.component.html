@@ -5,10 +5,13 @@
   <mat-toolbar color="primary">
     <div id="flexContainer"> <!--REVERSED FLEX-DIRECTION-->
         <!--views/tools-->
-        <span *ngFor="let toolbarButton of toolbarButtons">
-          <button mat-button matTooltip="{{toolbarButton.tooltip}}">
+        <span *ngFor="let toolbarButton of toolbarButtons; let i = index"> <!--Encapsulate button and mat-menu in componenet-->
+          <button mat-button matTooltip="{{toolbarButton.tooltip}}" [matMenuTriggerFor]="menu">
             <mat-icon color="accent">{{toolbarButton.icon}}</mat-icon>
           </button>
+          <mat-menu #menu="matMenu" *ngIf="toolbarButton.menu">
+            <button mat-menu-item>{{toolbarButton.tooltip}}</button>
+          </mat-menu>
         </span>
         <!--Search bar-->
         <form>
