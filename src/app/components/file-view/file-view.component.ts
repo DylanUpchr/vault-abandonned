@@ -10,7 +10,11 @@ import { FormGroup, FormControl } from '@angular/forms';
 })
 export class FileViewComponent implements OnInit {
   sortMenu = [
-    {text: 'test'}
+    {text: 'name'},
+    {text: 'date'},
+    {text: 'size'},
+    {text: 'ASC'},
+    {text: 'DESC'},
   ];
   groupMenu = [
     {text: 'test'}

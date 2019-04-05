@@ -5,5 +5,5 @@
   <mat-icon color="accent">{{this.Icon}}</mat-icon>
 </button>
 <mat-menu #menu="matMenu">
-  <button mat-button *ngFor="let item of this.Menu" style="width: 100%">{{item.text}}</button>
+  <button mat-button *ngFor="let item of this.Menu" style="width: 100%">{{item.text | titlecase}}</button>
 </mat-menu>

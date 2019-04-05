@@ -19,6 +19,9 @@
   mat-menu button{
     width: 100% !important;
   }
+  mat-menu{
+    width: 150px !important;
+  }
 }
 
 @include angular-material-theme($vault-theme);
