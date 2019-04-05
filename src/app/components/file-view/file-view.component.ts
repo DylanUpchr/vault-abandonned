@@ -1,6 +1,7 @@
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-file-view',
@@ -20,6 +21,22 @@ export class FileViewComponent implements OnInit {
     { icon: 'view_module', tooltip: 'Grid view', menu: false },
     { icon: 'view_list', tooltip: 'List view', menu: false }
   ];
+
+  searchFormGroup = new FormGroup({
+    inputSearch: new FormControl('')
+  });
+
+
+
+  onKeydown(event) {
+    const inputSearch = document.getElementById('inputSearch');
+    if (event.key === 'Escape') {
+      inputSearch.blur();
+    }
+  }
+  onSubmit() {
+    console.log(this.searchFormGroup.value.inputSearch);
+  }
 
   constructor(private userService: UserService, private router: Router) {}
 

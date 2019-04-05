@@ -5,16 +5,15 @@
   <mat-toolbar color="primary">
     <div id="flexContainer"> <!--REVERSED FLEX-DIRECTION-->
         <!--views/tools-->
-        <span *ngFor="let toolbarButton of toolbarButtons; let i = index"> <!--Encapsulate button and mat-menu in componenet-->
+        <span *ngFor="let toolbarButton of toolbarButtons"> <!--Encapsulate button and mat-menu in componenet-->
             <app-toolbar-button [toolbarButton]="toolbarButton"></app-toolbar-button>
         </span>
         <!--Search bar-->
-        <form>
+        <form [formGroup]="searchFormGroup" (ngSubmit)="onSubmit()">
           <mat-form-field>
-              <input matInput placeholder="Search">
+              <input matInput id="inputSearch" placeholder="Search" formControlName="inputSearch" (keydown)="onKeydown($event)">
           </mat-form-field>
-
-          <button type="submit" mat-button><mat-icon>search</mat-icon></button>
+          <button type="submit" id="submitSearch" mat-button><mat-icon>search</mat-icon></button>
         </form>
     </div>
   </mat-toolbar>
