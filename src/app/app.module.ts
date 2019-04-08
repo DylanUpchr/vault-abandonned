@@ -23,6 +23,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AboutComponent } from './components/about/about.component';
 import { UserService } from './services/user.service';
 import { ToolbarButtonComponent } from './components/file-view/toolbar-button/toolbar-button.component';
+import { FileService } from './services/file.service';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { ToolbarButtonComponent } from './components/file-view/toolbar-button/to
   providers: [
     SnackbarService,
     UserService,
-    CookieService
+    CookieService,
+    FileService
   ],
   bootstrap: [AppComponent]
 })

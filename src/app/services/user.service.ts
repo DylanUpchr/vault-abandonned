@@ -19,7 +19,7 @@ export class UserService {
   private url = 'api/db';
 
   getUsers(): Observable<object> {
-    return this.http.get<object>(this.url);
+    return this.http.get<object>(this.url); // Change to only get users table
   }
   getUser(): Observable<User> {
     return this.datastoreService.getCurrentUser();
