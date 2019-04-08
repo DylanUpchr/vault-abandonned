@@ -66,7 +66,7 @@ export class UserService {
               this.router.navigate(['/files']);
             }
           });
-        } else {
+        } else if (data.name === 'TokenExpiredError') {
           res.next('Token Expired');
         }
       });
