@@ -19,7 +19,9 @@ export class UserService {
   private url = 'api/db';
 
   getUsers(): Observable<object> {
-    return this.http.get<object>(this.url); // Change to only get users table
+    const users = new Subject<object>();
+    this.http.get<object>(this.url).subscribe(db => { users.next(Object.create(db).users); });
+    return users;
   }
   getUser(): Observable<User> {
     return this.datastoreService.getCurrentUser();
@@ -27,14 +29,14 @@ export class UserService {
   getUserById(id: number) {
     const user = new Subject<User>();
     this.getUsers().subscribe(data => {
-      user.next(Object.create(data).users.filter(u => u.Id === id)[0]);
+      user.next(Object.create(data).filter(u => u.Id === id)[0]);
     });
     return user;
   }
   getUserByEmail(email: string): Observable<User> {
     const user = new Subject<User>();
     this.getUsers().subscribe(data => {
-      user.next(Object.create(data).users.filter(u => u.Email === email)[0]);
+      user.next(Object.create(data).filter(u => u.Email === email)[0]);
     });
     return user;
   }
