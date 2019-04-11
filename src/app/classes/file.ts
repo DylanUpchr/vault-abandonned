@@ -1,4 +1,5 @@
 export class File {
+  Id: number;
   User: number;
   FilePath: string;
   FileName: string;
@@ -10,7 +11,8 @@ export class File {
   DateModified: Date;
   DateAccessed: Date;
 
-  constructor(user?: number,
+  constructor(id?: number,
+              user?: number,
               filePath?: string,
               fileName?: string,
               ext?: string,
@@ -19,7 +21,8 @@ export class File {
               animPreviewPath?: string,
               dateCreated?: Date,
               dateModified?: Date,
-              dateAccessed?: Date){
+              dateAccessed?: Date) {
+    this.Id = id;
     this.User = user;
     this.FilePath = filePath;
     this.FileName = fileName;
@@ -33,4 +36,3 @@ export class File {
   }
 
 }
-//{user: 2, filePath: '/', type: 'jpg', previewPath: '', animPreviewPath: '', fileName: 'test', fileSize: 0, dateCreated: '', dateModified: '', dateAccessed: ''}
