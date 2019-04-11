@@ -19,8 +19,15 @@
   mat-menu button{
     width: 100% !important;
   }
-  mat-menu{
+  .mat-menu-content{
+    padding: 0px;
     width: 150px !important;
+  }
+  mat-button-toggle-group{
+    width: 99%;
+  }
+  mat-button-toggle-group mat-button-toggle{
+    text-align: left;
   }
 }
 
