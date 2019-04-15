@@ -24,6 +24,7 @@ import { AboutComponent } from './components/about/about.component';
 import { UserService } from './services/user.service';
 import { ToolbarButtonComponent } from './components/file-view/toolbar-button/toolbar-button.component';
 import { FileService } from './services/file.service';
+import { FileCardComponent } from './components/file-view/file-card/file-card.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { FileService } from './services/file.service';
     SidenavContentComponent,
     DashboardComponent,
     AboutComponent,
-    ToolbarButtonComponent
+    ToolbarButtonComponent,
+    FileCardComponent
   ],
   imports: [
     BrowserModule,
