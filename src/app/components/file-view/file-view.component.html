@@ -17,4 +17,7 @@
         </form>
     </div>
   </mat-toolbar>
+  <div id="fileContainer">
+    <app-file-card *ngFor="let file of files" [file]="file"></app-file-card>
+  </div>
 </div>

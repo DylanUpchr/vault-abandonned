@@ -26,7 +26,7 @@
   mat-button-toggle-group{
     width: 99%;
   }
-  mat-button-toggle-group mat-button-toggle{
+  mat-button-toggle-group /deep/ .mat-button-toggle-label-content{
     text-align: left;
   }
 }
