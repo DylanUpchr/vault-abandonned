@@ -75,10 +75,7 @@ export class UserService {
     } else if (email && password) {
       this.getUserByEmail(email).subscribe(user => {
         if (user != null) {
-          if (
-            user.Password ===
-            sha256(password + user.Username).toString(cryptoJS.encHex)
-          ) {
+          if (user.Password === sha256(password + user.Username).toString(cryptoJS.encHex)) {
             this.datastoreService.setCurrentUser(user);
             this.cookieService.set('authToken', this.createJWT(user.Id));
             if (user.Role === Roles.Admin) {
@@ -112,12 +109,12 @@ export class UserService {
   createJWT(userId: number): string {
     const token = jwt.sign({ id: userId }, TOKEN_CONFIG.secret, {
       expiresIn: TOKEN_CONFIG.duration
-    }); //Create JWT Token
+    }); // Create JWT Token
     return token;
   }
   verifyJWT(token): Observable<any> {
     const value = new BehaviorSubject<any>('');
-    jwt.verify(token, TOKEN_CONFIG.secret, function(err, decoded) {
+    jwt.verify(token, TOKEN_CONFIG.secret, (err, decoded) => {
       if (err) {
         value.next(err);
       } else {
