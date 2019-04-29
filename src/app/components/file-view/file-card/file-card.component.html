@@ -1,7 +1,10 @@
 <mat-card class="grid">
-    <span id="imgContainer"></span>
-    <img matCardImage src="assets/file.png">
+    <span id="imgContainer">
+    <img matCardImage src="assets/previews/{{file.PreviewPath}}">
+  </span>
     <mat-card-footer>
-        Footer
+      <h4>
+          {{file.FileName}}
+      </h4>
     </mat-card-footer>
 </mat-card>

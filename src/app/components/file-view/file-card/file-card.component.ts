@@ -7,7 +7,9 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class FileCardComponent implements OnInit {
   @Input() file;
-  constructor() { }
+
+  constructor() {
+   }
 
   ngOnInit() {
   }
