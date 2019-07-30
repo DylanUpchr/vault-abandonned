@@ -82,10 +82,7 @@ export class UserService {
     } else if (email && password) {
       this.getUserByEmail(email).subscribe(user => {
         if (user != null) {
-          if (
-            user.Password ===
-            sha256(password + user.Username).toString(cryptoJS.encHex)
-          ) {
+          if (user.Password === sha256(password + user.Username).toString(cryptoJS.encHex)) {
             this.datastoreService.setCurrentUser(user);
             this.cookieService.set('authToken', this.createJWT(user.Id));
             if (user.Role === Roles.Admin) {

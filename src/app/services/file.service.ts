@@ -1,3 +1,4 @@
+import { UserService } from './user.service';
 import { HttpClient } from '@angular/common/http';
 import { Observable, Subject, BehaviorSubject, of } from 'rxjs';
 import { filter, map, tap, pluck } from 'rxjs/operators';
@@ -9,9 +10,20 @@ import { Injectable } from '@angular/core';
 export class FileService {
   private url = 'api/db';
 
-  getFiles(): Observable<object> {
+  getFiles(path?: string): Observable<object> {
     const files = new Subject<object>();
-    this.http.get<object>(this.url).subscribe(db => { files.next(Object.create(db).files); });
+
+    if (path === null || path === '' || path === undefined) {
+      path = '/';
+    }
+    this.userService.getUser().subscribe(user => {
+      this.http.get<object>(this.url).subscribe(db => {
+        files.next(
+          Object.create(db).files
+          .filter(file => (file.User === user.Id && file.FilePath === path))
+        );
+      });
+    });
     return files;
   }
   getFilesInDirectory(directory: string, userIdObs: Observable<number>): Observable<object> {
@@ -25,5 +37,6 @@ export class FileService {
     );
     return files;
   }
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+              private userService: UserService) { }
 }

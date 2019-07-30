@@ -1,0 +1,36 @@
+@import '~@angular/material/theming';
+@import '../../../../custom-theme.scss';
+
+
+@mixin angular-material-theme($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+
+    mat-card {
+        margin: 5px;
+        height: 150px;
+        width: 250px;
+    }
+    #imgContainer{
+        display: flex;
+        align-items: center;
+    }
+    mat-card img {
+        object-fit: contain;
+        max-width: 100%;
+        max-height: 75%;
+        width: auto;
+        height: auto;
+    }
+    mat-card mat-card-footer {
+        height: 25%;
+        border-top: 1px solid mat-color($primary);
+    }
+    h4 {
+      margin: 5px 0px 0px 5px;
+      font-weight: normal;
+    }
+}
+
+@include angular-material-theme($vault-theme);

@@ -9,16 +9,17 @@
     <mat-icon color="primary">{{typeMenuItem.icon}}</mat-icon>
     {{typeMenuItem.text | titlecase}}
   </button>-->
-  <mat-button-toggle-group #typeGroup="matButtonToggleGroup" [vertical]="true">
-<mat-button-toggle *ngFor="let typeMenuItem of this.TypeMenu">
-    <mat-icon color="primary">{{typeMenuItem.icon}}</mat-icon>
-    {{typeMenuItem.text | titlecase}}
-</mat-button-toggle>
+  <mat-button-toggle-group #typeGroup="matButtonToggleGroup" [vertical]="true" *ngIf="this.TypeMenu">
+    <mat-button-toggle *ngFor="let typeMenuItem of this.TypeMenu" [checked]="typeMenuItem.checked">
+      <mat-icon color="primary">{{typeMenuItem.icon}}</mat-icon>
+      {{typeMenuItem.text | titlecase}}
+    </mat-button-toggle>
   </mat-button-toggle-group>
-  <mat-button-toggle-group #directionGroup="matButtonToggleGroup" [vertical]="true">
-<mat-button-toggle *ngFor="let directionMenuItem of this.DirectionMenu" value="toggleMenuItem.value">
-  <mat-icon color="primary">{{directionMenuItem.icon}}</mat-icon>
-  {{directionMenuItem.text}}
-</mat-button-toggle>
+  <br *ngIf="this.DirectionMenu" />
+  <mat-button-toggle-group #directionGroup="matButtonToggleGroup" [vertical]="true" *ngIf="this.DirectionMenu">
+    <mat-button-toggle *ngFor="let directionMenuItem of this.DirectionMenu" value="toggleMenuItem.value" [checked]="directionMenuItem.checked">
+      <mat-icon color="primary">{{directionMenuItem.icon}}</mat-icon>
+      {{directionMenuItem.text | titlecase}}
+    </mat-button-toggle>
   </mat-button-toggle-group>
 </mat-menu>
