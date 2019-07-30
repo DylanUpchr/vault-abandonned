@@ -14,7 +14,8 @@ export class InMemoryDataService implements InMemoryDbService {
         new User(2, 'user@user.com', 'user', 'e172c5654dbc12d78ce1850a4f7956ba6e5a3d2ac40f0925fc6d691ebb54f6bf', Roles.User)
       ],
       files: [
-        new File(1, 2, '/', 'test', 'jpg', 0, null, null, new Date(Date.now()), null, null)
+        new File(1, 2, '/', 'test', 'jpg', 0, null, null, new Date(Date.now()), null, null),
+        new File(2, 2, '/Data', 'test2', 'jpg', 0, null, null, new Date(Date.now()), null, null)
       ]
   };
     return {db};

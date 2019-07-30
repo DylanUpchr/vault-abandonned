@@ -1,7 +1,9 @@
+import { FileService } from './../../services/file.service';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { FormGroup, FormControl } from '@angular/forms';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-file-view',
@@ -9,6 +11,7 @@ import { FormGroup, FormControl } from '@angular/forms';
   styleUrls: ['./file-view.component.scss']
 })
 export class FileViewComponent implements OnInit {
+  // Toolbar menus
   directionToggle = [
     {text: 'ascending', value: 'asc', icon: 'arrow_upward'},
     {text: 'descending', icon: 'arrow_downward'}
@@ -28,11 +31,14 @@ export class FileViewComponent implements OnInit {
     { icon: 'view_list', tooltip: 'List view', typeMenu: false, directionMenu: false }
   ];
 
+  // Search input
   searchFormGroup = new FormGroup({
     inputSearch: new FormControl('')
   });
 
-
+  // Directory contents
+  Directory: string;
+  Files: Observable<object>;
 
   onKeydown(event) {
     const inputSearch = document.getElementById('inputSearch');
@@ -44,14 +50,17 @@ export class FileViewComponent implements OnInit {
     console.log(this.searchFormGroup.value.inputSearch);
   }
 
-  constructor(private userService: UserService, private router: Router) {}
+  constructor(private userService: UserService, private fileService: FileService, private router: Router) {}
 
 
   ngOnInit() {
+    this.Directory = '/';
     this.userService.isLoggedIn().subscribe(loggedIn => {
       if (!loggedIn) {
         this.router.navigate(['/login']);
       }
     });
+    this.Files = this.fileService.getFilesInDirectory(this.Directory, this.userService.getUserId());
+    this.Files.subscribe(x => console.log(x));
   }
 }

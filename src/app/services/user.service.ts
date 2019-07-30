@@ -26,6 +26,13 @@ export class UserService {
   getUser(): Observable<User> {
     return this.datastoreService.getCurrentUser();
   }
+  getUserId(): Observable<number> {
+    const userId = new Subject<number>();
+    this.datastoreService.getCurrentUser().subscribe(data => {
+      userId.next(data.Id);
+    });
+    return userId;
+  }
   getUserById(id: number) {
     const user = new Subject<User>();
     this.getUsers().subscribe(data => {
@@ -112,12 +119,12 @@ export class UserService {
   createJWT(userId: number): string {
     const token = jwt.sign({ id: userId }, TOKEN_CONFIG.secret, {
       expiresIn: TOKEN_CONFIG.duration
-    }); //Create JWT Token
+    }); // Create JWT Token
     return token;
   }
   verifyJWT(token): Observable<any> {
     const value = new BehaviorSubject<any>('');
-    jwt.verify(token, TOKEN_CONFIG.secret, function(err, decoded) {
+    jwt.verify(token, TOKEN_CONFIG.secret, (err, decoded) => {
       if (err) {
         value.next(err);
       } else {
