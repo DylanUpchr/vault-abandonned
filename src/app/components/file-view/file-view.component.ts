@@ -1,3 +1,4 @@
+import { CookieService } from 'ngx-cookie-service';
 import { FileService } from './../../services/file.service';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
@@ -11,11 +12,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./file-view.component.scss']
 })
 export class FileViewComponent implements OnInit {
-<<<<<<< HEAD
   // Toolbar menus
-=======
-  // ---- Toolbar Button Lists -------------------------------------------------------------------
->>>>>>> 39adabc61cdf1d6bba31ab9e5357f5a97600e3c0
   directionToggle = [
     {text: 'ascending', value: 'asc', icon: 'arrow_upward', checked: false },
     {text: 'descending', value: 'desc', icon: 'arrow_downward', checked: true }
@@ -57,7 +54,8 @@ export class FileViewComponent implements OnInit {
 
   constructor(private userService: UserService,
               private router: Router,
-              private fileService: FileService) {}
+              private fileService: FileService,
+              private cookieService: CookieService) {}
 
 
   ngOnInit() {
@@ -65,7 +63,12 @@ export class FileViewComponent implements OnInit {
     // ---- Logged in ---------------------------------------------------------------------
     this.userService.isLoggedIn().subscribe(loggedIn => {
       if (!loggedIn) {
-        this.router.navigate(['/login']);
+        const token = this.cookieService.get('authToken');
+        if (token !== '' && token !== null) {
+          this.userService.attemptLogIn(null, null, token);
+        } else {
+          this.router.navigate(['/login']);
+        }
       }
     });
     this.Files = this.fileService.getFilesInDirectory(this.Directory, this.userService.getUserId());

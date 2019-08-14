@@ -14,16 +14,11 @@ export class InMemoryDataService implements InMemoryDbService {
         new User(2, 'user@user.com', 'user', 'e172c5654dbc12d78ce1850a4f7956ba6e5a3d2ac40f0925fc6d691ebb54f6bf', Roles.User)
       ],
       files: [
-<<<<<<< HEAD
-        new File(1, 2, '/', 'test', 'jpg', 0, null, null, new Date(Date.now()), null, null),
-        new File(2, 2, '/Data', 'test2', 'jpg', 0, null, null, new Date(Date.now()), null, null)
-=======
         new File(1, 2, '/', 'test', 'jpg', 0, 'file.png', null, new Date(Date.now()), null, null),
         new File(2, 2, '/', 'test2', 'jpg', 0, 'file.png', null, new Date(Date.now()), null, null),
         new File(3, 2, '/', 'test3', 'jpg', 0, 'file.png', null, new Date(Date.now()), null, null),
         new File(4, 2, '/', 'test4', 'jpg', 0, 'file.png', null, new Date(Date.now()), null, null),
         new File(5, 2, '/', 'test5', 'jpg', 0, 'file.png', null, new Date(Date.now()), null, null)
->>>>>>> 39adabc61cdf1d6bba31ab9e5357f5a97600e3c0
       ]
   };
     return {db};
