@@ -7,11 +7,11 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { Observable, of } from 'rxjs';
 
 @Component({
-  selector: 'app-file-view',
-  templateUrl: './file-view.component.html',
-  styleUrls: ['./file-view.component.scss']
+  selector: 'app-dir-view',
+  templateUrl: './dir-view.component.html',
+  styleUrls: ['./dir-view.component.scss']
 })
-export class FileViewComponent implements OnInit {
+export class DirViewComponent implements OnInit {
   // Toolbar menus
   directionToggle = [
     {text: 'ascending', value: 'asc', icon: 'arrow_upward', checked: false },

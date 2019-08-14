@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FileViewComponent } from './file-view.component';
+import { DirViewComponent } from './dir-view.component';
 
-describe('FileViewComponent', () => {
-  let component: FileViewComponent;
-  let fixture: ComponentFixture<FileViewComponent>;
+describe('DirViewComponent', () => {
+  let component: DirViewComponent;
+  let fixture: ComponentFixture<DirViewComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FileViewComponent ]
+      declarations: [ DirViewComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FileViewComponent);
+    fixture = TestBed.createComponent(DirViewComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

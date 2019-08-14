@@ -10,7 +10,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MaterialModule } from './material.module';
-import { FileViewComponent } from './components/file-view/file-view.component';
+import { DirViewComponent } from './components/dir-view/dir-view.component';
 import { LoginComponent } from './components/login/login.component';
 import { PageFooterComponent } from './components/page-footer/page-footer.component';
 import { PageToolbarComponent } from './components/page-toolbar/page-toolbar.component';
@@ -22,14 +22,14 @@ import { SidenavContentComponent } from './components/sidenav-content/sidenav-co
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AboutComponent } from './components/about/about.component';
 import { UserService } from './services/user.service';
-import { ToolbarButtonComponent } from './components/file-view/toolbar-button/toolbar-button.component';
+import { ToolbarButtonComponent } from './components/dir-view/toolbar-button/toolbar-button.component';
 import { FileService } from './services/file.service';
-import { FileCardComponent } from './components/file-view/file-card/file-card.component';
+import { FileCardComponent } from './components/dir-view/file-card/file-card.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    FileViewComponent,
+    DirViewComponent,
     LoginComponent,
     PageFooterComponent,
     PageToolbarComponent,
