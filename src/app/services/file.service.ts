@@ -26,9 +26,9 @@ export class FileService {
     });
     return files;
   }
-  getFilesInDirectory(directory: string, userIdObs: Observable<number>): Observable<object> {
+  getFilesInDirectory(directory: string): Observable<object> {
     const files = new Subject<object>();
-    userIdObs.subscribe( userId => {
+    this.userService.getUserId().subscribe( userId => {
       this.getFiles().pipe(
         map(fileObj => Object.keys(fileObj).map(i => fileObj[i])
         .filter(file => file.FilePath === directory && file.User === userId)

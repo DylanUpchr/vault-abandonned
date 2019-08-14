@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { FormGroup, FormControl } from '@angular/forms';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-file-view',
@@ -40,7 +40,7 @@ export class FileViewComponent implements OnInit {
 
   // Directory contents
   Directory: string;
-  Files: Observable<object>;
+  Files: object;
 
   onKeydown(event) {
     const inputSearch = document.getElementById('inputSearch');
@@ -65,13 +65,18 @@ export class FileViewComponent implements OnInit {
       if (!loggedIn) {
         const token = this.cookieService.get('authToken');
         if (token !== '' && token !== null) {
-          this.userService.attemptLogIn(null, null, token);
+          this.userService.attemptLogIn(null, null, token).subscribe( res => {
+            if (res !== '') {
+              this.router.navigate(['/login']);
+            }
+          });
         } else {
           this.router.navigate(['/login']);
         }
       }
     });
-    this.Files = this.fileService.getFilesInDirectory(this.Directory, this.userService.getUserId());
-    this.Files.subscribe(x => console.log(x));
+    this.fileService.getFilesInDirectory(this.Directory).subscribe(files => {
+      this.Files = of(files);
+    });
   }
 }

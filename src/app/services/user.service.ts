@@ -68,6 +68,7 @@ export class UserService {
       this.verifyJWT(token).subscribe(data => {
         if (data.name !== 'TokenExpiredError') {
           this.getUserById(data.id).subscribe(user => {
+            this.cookieService.set('authToken', this.createJWT(user.Id));
             this.datastoreService.setCurrentUser(user);
             if (user.Role === Roles.Admin) {
               this.router.navigate(['/dashboard']);

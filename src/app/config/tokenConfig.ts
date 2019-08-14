@@ -1,4 +1,4 @@
 export const TOKEN_CONFIG = {
   secret: 'test',
-  duration: 600 // 2 minute token
+  duration: 900 // 15 minute token
 };

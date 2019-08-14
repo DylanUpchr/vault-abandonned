@@ -19,6 +19,6 @@
 
   <!--Directory contents-->
   <div id="fileContainer">
-    <!--<app-file-card *ngFor="let file of files" [file]="file"></app-file-card>-->
+    <app-file-card *ngFor="let file of Files | async" [file]="file"></app-file-card>
   </div>
 </div>
