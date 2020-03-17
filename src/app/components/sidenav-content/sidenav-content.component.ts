@@ -1,6 +1,6 @@
 import { UserService } from './../../services/user.service';
 import { Component, OnInit, Input } from '@angular/core';
-import { MatSidenav } from '@angular/material';
+import { MatSidenav } from '@angular/material/sidenav';
 import { Roles } from '../../classes/user';
 import { Observable, of, BehaviorSubject } from 'rxjs';
 
