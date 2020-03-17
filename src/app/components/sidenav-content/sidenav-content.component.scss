@@ -16,10 +16,10 @@
   mat-nav-list{
     padding: 0px;
   }
-  :host /deep/ .mat-list-item-content{ /*host deep hack*/
+  :host ::ng-deep .mat-list-item-content{ /*host deep hack*/
     padding: 0px;
   }
-  :host /deep/ .mat-expansion-panel-body{
+  :host ::ng-deep .mat-expansion-panel-body{
     padding: 5px;
   }
   h3{
