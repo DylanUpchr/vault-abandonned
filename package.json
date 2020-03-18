@@ -26,11 +26,11 @@
     "crypto-js": "^3.1.9-1",
     "files": "^1.0.0",
     "jsonwebtoken": "^8.5.1",
-    "jwa": "^1.4.1",
     "jws": "^3.2.2",
     "ngx-cookie-service": "^2.1.0",
     "ngx-device-detector": "^1.4.0",
     "rxjs": "~6.5.4",
+    "stream": "0.0.2",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"
   },
